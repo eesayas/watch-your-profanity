@@ -5,6 +5,7 @@ A google chrome extension for muting profane words from Netflix
 
 # Notes
 - Make sure to enable subtitles on your video
+- Be sure to enable the extension by clicking the toggle in the popup after install
 
 # Deployment Manual
 1. Git clone this repo
