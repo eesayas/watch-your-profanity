@@ -11,23 +11,37 @@ var callback = () =>{
     let subtitles = Array.from(document.getElementsByClassName('player-timedtext-text-container'));
     
     if(subtitles.length > 0){
-        let text = [];
         subtitles.forEach((subtitle) => {
-            text.push(subtitle.textContent);
+
+            //replace f-words and send mute message to background.js
+            if(subtitle.textContent.includes('fuck')){
+                let oldText = subtitle.textContent;
+                let newText = oldText.replace('fuck', 'f***');
+                subtitle.childNodes[0].textContent = newText;
+                port.postMessage({mute: true});
+            
+            } else if(subtitle.textContent.includes('Fuck')){
+                let oldText = subtitle.textContent;
+                let newText = oldText.replace('Fuck', 'F***');
+                subtitle.childNodes[0].textContent = newText;
+                port.postMessage({mute: true});
+            }
+            
         });
 
-        if(text.join(' ').toLowerCase() !== current){
-            current = text.join(' ').toLowerCase();
+        //check if no f-words
+        let fullText = [];
 
-            if(current.includes('fuck')){
-                console.log('Watch your profanity');
-                port.postMessage({mute: true});
-                
+        fullText = subtitles.map(x => {
+            return x.textContent
+        });
 
-            } else if(!(current.includes('fuck'))){
-                port.postMessage({mute: false});
-            }
+        fullText = fullText.join(' ').toLowerCase();
+
+        if(!(fullText.includes('fuck') || fullText.includes('f***'))){
+            port.postMessage({mute: false});
         }
+    
     } else{
         port.postMessage({mute: false});
     }
