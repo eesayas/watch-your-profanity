@@ -3,6 +3,9 @@
 # Watch Your Profanity
 A google chrome extension for muting profane words from Netflix
 
+# Notes
+- Make sure to enable subtitles on your video
+
 # Deployment Manual
 1. Git clone this repo
 2. Download [Google Chrome](https://www.google.ca/chrome/)
