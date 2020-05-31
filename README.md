@@ -1,7 +1,7 @@
 ![](https://raw.githubusercontent.com/eesayas/watch-your-profanity/master/icon128.png)
 
 # Watch Your Profanity
-A google chrome extension for filtering f-words words from Netflix
+A google chrome extension for filtering f-words from Netflix
 
 # Notes
 - Make sure to enable subtitles on your video
