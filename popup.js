@@ -4,18 +4,12 @@ var sfx = new Audio(chrome.extension.getURL('enabled_sfx.mp3'));
 
 //determine prev local storage values for enabled/disabled
 chrome.storage.local.get('watchyourprofanity', data => {
-    console.log(data.watchyourprofanity);
-    if(typeof data.watchyourprofanity === 'undefined'){
+   if(data.watchyourprofanity == true){
         label.textContent = 'Enabled';
         chrome.storage.local.set({'watchyourprofanity': true});
         checkbox.checked = true;
     
-    } else if(data.watchyourprofanity == true){
-        label.textContent = 'Enabled';
-        chrome.storage.local.set({'watchyourprofanity': true});
-        checkbox.checked = true;
-    
-    } else if(data.watchyourprofanity == false){
+    } else{
         label.textContent = 'Disabled';
         chrome.storage.local.set({'watchyourprofanity': false});
         checkbox.checked = false;
