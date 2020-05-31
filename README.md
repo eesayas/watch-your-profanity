@@ -6,6 +6,7 @@ A google chrome extension for filtering f-words from Netflix
 # Notes
 - Make sure to enable subtitles on your video
 - Be sure to enable the extension by clicking the toggle in the popup after install
+- You would need to refresh the page to apply changes after toggle
 - The extension only works on active tabs, meaning if you minimize it you will hear the f-words again.
 
 # Deployment Manual
