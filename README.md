@@ -1,2 +1,2 @@
-# watch-your-profanity
-A google chrome extension for muting profane words from streaming videos
+# Watch Your Profanity
+A google chrome extension for muting profane words from Netflix
