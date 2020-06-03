@@ -13,7 +13,7 @@ const callback = () =>{
         
         current = $('.player-timedtext').text(); //replace previous subtitle
     
-        if( current.toLowerCase().includes('fuck') ){
+        if( current.includes('fuck') ){
             
             //replace text
             $('.player-timedtext').children().each( function(){
@@ -23,12 +23,25 @@ const callback = () =>{
 
             port.postMessage({mute: true}); //mute
 
+        } else if( current.includes('Fuck') ){
+
+            //replace text
+            $('.player-timedtext').children().each( function(){
+                $(this).html( $(this).html().replace(/Fuck/g,"F***") );
+            });
+            current = $('.player-timedtext').text(); //replace since text is changed
+
+            port.postMessage({mute: true}); //mute
+
         } else{
             port.postMessage({mute: false}); //unmute
         }
-
-        console.log(`SUBTITLES => ${$('.player-timedtext').text()}`);
+        // console.log(`SUBTITLES => ${$('.player-timedtext').text()}`);
     } 
+    
+    else if ( $('.player-timedtext').text().length == 0){ //if no words
+        port.postMessage({mute: false}); //unmute
+    }
 }
 
 if(MutationObserver){
