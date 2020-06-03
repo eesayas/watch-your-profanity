@@ -10,10 +10,19 @@ const toggleMute = (bool) => {
     });
 }
 
+// //reload chrome tabs to apply changes
+// const reloadTab = () =>{
+//     chrome.tabs.query({url: []}, function(tabs) {
+//         for (var i = 0; i < tabs.length; i++) {
+//             chrome.tabs.update(tabs[i].id, {url: tabs[i].url});
+//         }
+//     });
+// }
+
 //set port listener (receiver)
 chrome.runtime.onConnect.addListener((port) => {
     console.assert(port.name == "Watch Your Profanity");
     port.onMessage.addListener(function(msg){
-       toggleMute(msg.mute);
+        toggleMute(msg.mute);
     });
 });
