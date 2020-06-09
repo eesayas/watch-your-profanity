@@ -12,6 +12,10 @@ const callback = () =>{
     if( $('.player-timedtext').text().length && $('.player-timedtext').text() !== current ){
         
         current = $('.player-timedtext').text(); //replace previous subtitle
+
+        let message = {
+            mute: false
+        };
     
         if( current.includes('fuck') ){
             
@@ -20,23 +24,30 @@ const callback = () =>{
                 $(this).html( $(this).html().replace(/fuck/g,"f***") );
             });
             current = $('.player-timedtext').text(); //replace since text is changed
-
-            port.postMessage({mute: true}); //mute
-
-        } else if( current.includes('Fuck') ){
+            message.mute = true;
+        }  
+        
+        if( current.includes('Fuck') ){
 
             //replace text
             $('.player-timedtext').children().each( function(){
                 $(this).html( $(this).html().replace(/Fuck/g,"F***") );
             });
             current = $('.player-timedtext').text(); //replace since text is changed
+            message.mute = true;
+        } 
+        
+        if( current.includes('F-U-C-K') ){
 
-            port.postMessage({mute: true}); //mute
+            //replace text
+            $('.player-timedtext').children().each( function(){
+                $(this).html( $(this).html().replace(/F-U-C-K/g,"F-*-*-*") );
+            });
+            current = $('.player-timedtext').text(); //replace since text is changed
+            message.mute = true;
+        } 
 
-        } else{
-            port.postMessage({mute: false}); //unmute
-        }
-        // console.log(`SUBTITLES => ${$('.player-timedtext').text()}`);
+        port.postMessage(message);
     } 
     
     else if ( $('.player-timedtext').text().length == 0){ //if no words
